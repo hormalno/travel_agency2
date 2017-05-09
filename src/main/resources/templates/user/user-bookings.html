@@ -1,0 +1,38 @@
+<div class="inner-banner style-6">
+    <img class="center-image" th:src="@{/img/banners/flight_detail_banner.jpg}" alt="">
+</div>
+<div class="container">
+    <div class="row">
+    <div class="col-xs-3 col-md-12">
+        <div><h2 class="title">Your bookings</h2></div>
+        <div class="row">
+            <div class="col-xs-3 col-md-12">
+                <table class="table table-info">
+                    <thead class="inverse">
+                    <tr>
+                        <th>#</th>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>QTY</th>
+                        <th>Cost</th>
+                        <th>Check In Date</th>
+                        <th>Check Out Date</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="booking : ${bookings}" th:object="${booking}">
+                        <td scope="row" th:text="*{id}"></td>
+                        <td th:text="*{bookingProductName}"></td>
+                        <td th:text="*{bookingProductPrice}"></td>
+                        <td th:text="*{quantity}"></td>
+                        <td th:text="*{cost}"></td>
+                        <td th:text="${#dates.format(booking.checkInDate, 'dd/MM/yyyy')}"></td>
+                        <td th:text="${#dates.format(booking.checkOutDate, 'dd/MM/yyyy')}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>

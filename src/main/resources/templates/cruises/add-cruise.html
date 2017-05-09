@@ -1,0 +1,70 @@
+<div class="inner-banner style-6">
+    <img class="center-image" th:src="@{/img/banners/flight_detail_banner.jpg}" alt="">
+</div>
+<div class="container">
+    <div class="col-xs-12 col-sm-7">
+        <div class="f-login-content">
+            <div class="f-login-header">
+                <div class="f-login-title color-dr-blue-2" th:text="|${action} cruise|"></div>
+            </div>
+            <form method="post" th:object="${cruiseDto}">
+                <div class="form-group" th:classappend="${#fields.hasErrors('name')} ? 'has-error'">
+                    <label class="form-control-label" for="inputName">Name</label>
+                    <input type="text" class="form-control" id="inputName" th:field="*{name}"/>
+                    <small class="small text-danger" th:each="error : ${#fields.errors('name')}" th:text="|  ${error}|"></small>
+                </div>
+                <div class="form-group" th:classappend="${#fields.hasErrors('price')} ? 'has-error'">
+                    <label class="form-control-label" for="inputPrice">Price</label>
+                    <input type="number" class="form-control form-control-danger" id="inputPrice" th:field="*{price}"/>
+                    <small class="small text-danger" th:each="error : ${#fields.errors('price')}" th:text="|  ${error}|"></small>
+                </div>
+                <div class="form-group" th:classappend="${#fields.hasErrors('description')} ? 'has-error'">
+                    <label class="form-control-label" for="inputDescription">Description</label>
+                    <textarea class="form-control" id="inputDescription" th:field="*{description}"></textarea>
+                    <small class="small text-danger" th:each="error : ${#fields.errors('description')}" th:text="|  ${error}|"></small>
+                </div>
+                <div class="form-group" th:classappend="${#fields.hasErrors('information')} ? 'has-error'">
+                    <label class="form-control-label" for="inputInformation">Information</label>
+                    <textarea class="form-control" id="inputInformation" th:field="*{information}"></textarea>
+                    <small class="small text-danger" th:each="error : ${#fields.errors('information')}" th:text="|  ${error}|"></small>
+                </div>
+                <div class="form-group" th:classappend="${#fields.hasErrors('cruiseCategory')} ? 'has-error'">
+                    <label class="form-control-label" for="inputCategory">Category</label>
+                    <select class="form-control" id="inputCategory" th:field="*{cruiseCategory}">
+                        <option th:each="cruiseCategory : ${categories}" th:value="${cruiseCategory}" th:text="${cruiseCategory.type}"></option>
+                    </select>
+                </div>
+                <div class="form-group" th:classappend="${#fields.hasErrors('originName')} ? 'has-error'">
+                    <label class="form-control-label" for="inputOrigin">Origin city</label>
+                    <select class="form-control" id="inputOrigin" th:field="*{originName}">
+                        <option th:each="cityName : ${cityNames}" th:value="${cityName}" th:text="${cityName}"></option>
+                    </select>
+                </div>
+                <div class="form-group" th:classappend="${#fields.hasErrors('destinationNames')} ? 'has-error'">
+                    <label class="form-control-label" for="inputDestination">Destination cities</label>
+                    <select class="form-control" id="inputDestination" th:field="*{destinationNames}" multiple="multiple">
+                        <option th:each="cityName : ${cityNames}" th:value="${cityName}" th:text="${cityName}"></option>
+                    </select>
+                </div>
+                <div class="form-group" th:classappend="${#fields.hasErrors('cruiseLine')} ? 'has-error'">
+                    <label class="form-control-label" for="inputCruiseLine">Cruise Line</label>
+                    <input type="text" class="form-control" id="inputCruiseLine" th:field="*{cruiseLine}"/>
+                    <small class="small text-danger" th:each="error : ${#fields.errors('cruiseLine')}" th:text="|  ${error}|"></small>
+                </div>
+                <div class="form-group" th:classappend="${#fields.hasErrors('duration')} ? 'has-error'">
+                    <label class="form-control-label" for="inputDuration">Duration</label>
+                    <input type="number" class="form-control" id="inputDuration" th:field="*{duration}"/>
+                    <small class="small text-danger" th:each="error : ${#fields.errors('duration')}" th:text="|  ${error}|"></small>
+                </div>
+                <div class="form-group" th:classappend="${#fields.hasErrors('shipName')} ? 'has-error'">
+                    <label class="form-control-label" for="inputShipName">Ship name</label>
+                    <input type="text" class="form-control" id="inputShipName" th:field="*{shipName}"/>
+                    <small class="small text-danger" th:each="error : ${#fields.errors('shipName')}" th:text="|  ${error}|"></small>
+                </div>
+
+                <input type="submit" class="btn btn-success" th:value="|${action} cruise|"/>
+                <a class="btn btn-warning" th:href="@{/cruises}">Back</a>
+            </form>
+        </div>
+    </div>
+</div>

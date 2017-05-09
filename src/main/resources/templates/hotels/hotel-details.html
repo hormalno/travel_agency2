@@ -1,0 +1,137 @@
+<div class="inner-banner style-6">
+    <img class="center-image" th:src="@{/img/banners/hotel_detail_banner.jpg}" alt="">
+    <div class="vertical-align">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-8 col-md-offset-2">
+                    <ul class="banner-breadcrumb color-white clearfix">
+                        <li><span>detail</span></li>
+                    </ul>
+                    <h2 class="color-white">hotel</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<th:block th:object="${hotel}">
+<div class="detail-wrapper">
+    <div class="container">
+        <div class="detail-header">
+            <div class="row">
+                <div class="col-xs-12 col-sm-8">
+                    <div class="detail-hotelCategory color-grey-3" th:text="|*{address}, *{city.name}|"></div>
+                    <h2 class="detail-title color-dark-2" th:text="*{name}"></h2>
+                    <div class="detail-rate rate-wrap clearfix">
+                        <div class="rate" th:text="|Review Score: ${hotel.score} / 5|"></div>
+                        <i th:text="|${#sets.size(hotel.reviews)} reviews|"></i>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4">
+                    <div class="detail-price color-dark-2">price <span class="color-dr-blue" th:text="|$ *{price}|"></span> /person</div>
+                </div>
+            </div>
+        </div>
+        <div class="row padd-90">
+            <div class="col-xs-12 col-md-8">
+                <div class="detail-content color-1">
+                    <div class="detail-top slider-wth-thumbs style-2">
+                        <div class="swiper-container thumbnails-preview" data-autoplay="0" data-loop="1" data-speed="500" data-center="0" data-slides-per-view="1">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide active" data-val="0">
+                                    <img class="img-responsive img-full" th:src="@{/img/m_slide_1.jpg}" alt="">
+                                </div>
+                                <div class="swiper-slide" data-val="1">
+                                    <img class="img-responsive img-full" th:src="@{/img/m_slide_1.jpg}" alt="">
+                                </div>
+                                <div class="swiper-slide" data-val="2">
+                                    <img class="img-responsive img-full" th:src="@{/img/m_slide_1.jpg}" alt="">
+                                </div>
+                                <div class="swiper-slide" data-val="3">
+                                    <img class="img-responsive img-full" th:src="@{/img/m_slide_1.jpg}" alt="">
+                                </div>
+                                <div class="swiper-slide" data-val="4">
+                                    <img class="img-responsive img-full" th:src="@{/img/m_slide_1.jpg}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-container thumbnails" data-autoplay="0" data-loop="0" data-speed="500" data-center="0" data-slides-per-view="responsive" data-xs-slides="3" data-sm-slides="5" data-md-slides="5" data-lg-slides="5" data-add-slides="5">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide current active" data-val="0">
+                                    <img class="img-responsive img-full" th:src="@{/img/m_slide_1s.jpg}" alt="">
+                                </div>
+                                <div class="swiper-slide" data-val="1">
+                                    <img class="img-responsive img-full" th:src="@{/img/m_slide_1s.jpg}" alt="">
+                                </div>
+                                <div class="swiper-slide" data-val="2">
+                                    <img class="img-responsive img-full" th:src="@{/img/m_slide_1s.jpg}" alt="">
+                                </div>
+                                <div class="swiper-slide" data-val="3">
+                                    <img class="img-responsive img-full" th:src="@{/img/m_slide_1s.jpg}" alt="">
+                                </div>
+                                <div class="swiper-slide" data-val="4">
+                                    <img class="img-responsive img-full" th:src="@{/img/m_slide_1s.jpg}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="detail-content-block">
+                        <h3>General Information About hotel</h3>
+                        <p th:text="*{information}"></p>
+                    </div>
+                    <div class="detail-content-block">
+                        <h3>reviews</h3>
+                        <a id="addTaskButton" class="text-gray-dark" sec:authorize="isAuthenticated()">
+                            + Add Review
+                        </a>
+                        <div id="addItemsInputs">
+                            <div class="form-group">
+                                <textarea id="newInputReview" class="form-control" placeholder="Give your review"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <input id="newInputScore" type="number" class="form-control" placeholder="Give your score"/>
+                            </div>
+                            <div class="form-group">
+                                <a id="btnSave" class="btn btn-primary">Save</a>
+                                <a id="btnCancel" class="btn btn-primary">Cancel</a>
+                            </div>
+                        </div>
+                        <div id="loadAllReviews" class="comm-info" th:attr="productId=*{id}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-4">
+                <div class="right-sidebar">
+                    <div class="detail-block bg-dr-blue">
+                        <h4 class="color-white">details</h4>
+                        <div class="details-desc">
+                            <p class="color-grey-9">Category: <span class="color-white" th:text="*{hotelCategory}"></span></p>
+                            <p class="color-grey-9">price: <span class="color-white" th:text="|*{price} / person|"></span></p>
+                            <p class="color-grey-9">location: <span class="color-white" th:text="|*{city.name}, *{city.country}|"></span></p>
+                            <p class="color-grey-9">review score: <span class="color-white" th:text="*{score} + ' / 5'"></span></p>
+                            <p class="color-grey-9">hotel class: <span class="color-white" th:text="|*{star} |"></span><span class="fa fa-star color-yellow"></span></p>
+                            <p class="color-grey-9" th:each="facility : *{facilities}"><span class="color-white" th:text="${facility}"></span></p>
+                        </div>
+                        <h4 class="color-white">book</h4>
+                        <form method="post">
+                        <input type="submit" class="c-button bg-white hv-dr-blue-2-o" value="book now">
+                        </form>
+                    </div>
+                    <div class="help-contact bg-grey-2">
+                        <h4 class="color-dark-2">Need Help?</h4>
+                        <p class="color-grey">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <a class="help-phone color-dark-2 link-dr-blue" href="tel:0200059600"><img th:src="@{/img/phone24-dark-2.png}" alt="">020 00 59 600</a>
+                    </div>
+                    <div class="detail-block bg-grey-2" sec:authorize="hasRole('ADMIN')">
+                        <h4 class="color-dark-2">Admin</h4>
+                        <a class="btn btn-primary" th:href="'/admin/hotels/edit/'+*{id}">Edit Hotel</a>
+                        <a class="btn btn-primary" href="#">Delete Hotel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</th:block>
+</div>

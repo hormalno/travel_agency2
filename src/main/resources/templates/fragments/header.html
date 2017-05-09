@@ -1,0 +1,45 @@
+<header class="color-1 hovered menu-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="nav">
+                    <a href="/" class="logo"><img th:src="@{/img/logo_dark.png}" alt="lets travel"/></a>
+                    <div class="nav-menu-icon">
+                        <a href="#"><i></i></a>
+                    </div>
+                    <nav class="menu">
+                        <ul>
+                            <li class="type-1" th:classappend="${home}? 'active'"><a href="/">Home<span class="fa fa-angle-down"></span></a> </li>
+                            <li class="type-1" th:classappend="${hotelMenu}? 'active'"><a th:href="@{/hotels}">Hotels<span class="fa fa-angle-down"></span></a>
+                                <ul class="dropmenu" sec:authorize="hasRole('ADMIN')">
+                                    <li><a th:href="@{/admin/hotels/add}">Add hotel</a></li>
+                                </ul>
+                            </li>
+                            <li class="type-1" th:classappend="${flightMenu}? 'active'"><a th:href="@{/flights}">Flights<span class="fa fa-angle-down"></span></a>
+                                <ul class="dropmenu" sec:authorize="hasRole('ADMIN')">
+                                    <li><a th:href="@{/admin/flights/add}">Add flight</a></li>
+                                </ul>
+                            </li>
+                            <li class="type-1" th:classappend="${cruiseMenu}? 'active'"><a th:href="@{/cruises}">Cruises<span class="fa fa-angle-down"></span></a>
+                                <ul class="dropmenu" sec:authorize="hasRole('ADMIN')">
+                                    <li><a th:href="@{/admin/cruises/add}">Add cruise</a></li>
+                                </ul>
+                            </li>
+                            <li class="type-1" sec:authorize="isAnonymous()">
+                                <a href="/login" >Login</a>
+                            </li>
+                            <li class="type-1" sec:authorize="isAuthenticated()">
+                                <a th:text="|User: ${#authentication.name}|"><span class="fa fa-angle-down"></span></a>
+                                <ul class="dropmenu">
+                                    <li><a th:href="@{/user/bookings}">Bookings</a></li>
+                                    <li><a th:href="@{/user/reviews}">Reviews</a></li>
+                                    <li><a th:href="@{/logout}">Logout</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

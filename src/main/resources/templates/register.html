@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/head}"></head>
+<body>
+<header th:replace="~{fragments/header}"></header>
+<img class="center-image" th:src="@{img/bg-1.jpg}" alt=""/>
+<div class="container">
+    <div class="login-fullpage">
+        <div class="row">
+            <div class="login-logo"></div>
+            <div class="col-xs-12 col-sm-7">
+                <div class="f-login-content">
+                    <div class="f-login-header">
+                        <div class="f-login-title color-dr-blue-2">Register</div>
+                    </div>
+            <form method="post" th:object="${userDto}">
+                <div class="form-group" th:classappend="${#fields.hasErrors('username')} ? 'has-error'">
+                    <label class="form-control-label" for="inputUsername">Username</label>
+                    <input type="text" class="form-control" id="inputUsername" th:field="*{username}"/>
+                    <small class="small text-danger" th:each="error : ${#fields.errors('username')}" th:text="|  ${error}|"></small>
+                </div>
+                <div class="form-group" th:classappend="${#fields.hasErrors('password')}? 'has-error'">
+                    <label class="form-control-label" for="inputPassword">Password</label>
+                    <input type="password" class="form-control" id="inputPassword" th:field="*{password}"/>
+                    <small class="small text-danger" th:each="error : ${#fields.errors('password')}" th:text="|  ${error}|"></small>
+                </div>
+                <div class="form-group" th:classappend="${passwordsNotMatching != null} ? 'has-error'">
+                    <label class="form-control-label" for="inputConfirmPassword">Confirm Password</label>
+                    <input type="password" class="form-control form-control-danger" id="inputConfirmPassword" th:field="*{confirmPassword}"/>
+                    <small class="small text-danger" th:if="${passwordsNotMatching != null}" th:text="${paswordsNotMatching}"></small>
+                </div>
+                <div class="form-group" th:classappend="${#fields.hasErrors('email')} ? 'has-error'">
+                    <label class="form-control-label" for="inputEmail">E-mail address</label>
+                    <input type="text" class="form-control" id="inputEmail" th:field="*{email}"/>
+                    <small class="small text-danger" th:each="error : ${#fields.errors('email')}" th:text="|  ${error}|"></small>
+                </div>
+                <div class="form-group" th:classappend="${#fields.hasErrors('firstName')} ? 'has-error'">
+                    <label class="form-control-label" for="inputFirstName">First Name</label>
+                    <input type="text" class="form-control" id="inputFirstName" th:field="*{firstName}"/>
+                    <small class="small text-danger" th:each="error : ${#fields.errors('firstName')}" th:text="|  ${error}|"></small>
+                </div>
+                <div class="form-group" th:classappend="${#fields.hasErrors('lastName')} ? 'has-error'">
+                    <label class="form-control-label" for="inputLastName">Last Name</label>
+                    <input type="text" class="form-control" id="inputLastName" th:field="*{lastName}" th/>
+                    <small class="small text-danger" th:each="error : ${#fields.errors('lastName')}" th:text="|  ${error}|"></small>
+                </div>
+                <div class="form-group" th:classappend="${#fields.hasErrors('cityName')} ? 'has-error'">
+                    <label class="form-control-label" for="inputCity">City</label>
+                    <select class="form-control" id="inputCity" th:field="*{cityName}">
+                        <option th:each="cityName : ${cityNames}" th:value="${cityName}" th:text="${cityName}"></option>
+                    </select>
+                </div>
+                <input type="submit" value="register" class="btn btn-primary"/>
+            </form>
+    </div>
+</div>
+        </div>
+    <div class="full-copy">© 2017 All rights reserved. let’s travel</div>
+
+    </div>
+</div>
+<script th:replace="~{fragments/script}"></script>
+</body>
+</html>

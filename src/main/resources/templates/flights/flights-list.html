@@ -1,0 +1,70 @@
+<div class="col-xs-12 col-sm-8 col-md-9">
+    <div class="list-header clearfix">
+        <div class="drop-wrap drop-wrap-s-4 color-4 list-sort">
+            <div class="drop">
+                <b>Sort by price</b>
+                <a href="#" class="drop-list"><i class="fa fa-angle-down"></i></a>
+                <span><a href="#">ASC</a><a href="#">DESC</a></span>
+            </div>
+        </div>
+        <div class="drop-wrap drop-wrap-s-4 color-4 list-sort">
+            <div class="drop">
+                <b>Sort by ranking</b>
+                <a class="drop-list"><i class="fa fa-angle-down"></i></a>
+                <span><a href="#">ASC</a><a href="#">DESC</a></span>
+            </div>
+        </div>
+    </div>
+    <div class="list-content clearfix">
+        <th:block th:each="flight : ${flights}" th:object="${flight}">
+            <div class="list-item-entry">
+                <div class="hotel-item style-10 bg-white">
+                    <div class="table-view">
+                        <div class="radius-top cell-view">
+                            <img th:src="@{/img/flight_grid_1.jpg}" alt="">
+                        </div>
+                        <div class="title hotel-middle clearfix cell-view">
+                            <h4><b th:text="*{name}"></b></h4>
+                            <div class="fi_block grid-hidden row row10">
+                                <div class="flight-icon col-xs-6 col10">
+                                    <img class="fi_icon" th:src="@{/img/flight_icon_2.png}" alt="">
+                                    <div class="fi_content">
+                                        <div class="fi_title color-dark-2">take off</div>
+                                        <div class="fi_text color-grey" th:text="*{origin.name}"></div>
+                                    </div>
+                                </div>
+                                <div class="flight-icon col-xs-6 col10">
+                                    <img class="fi_icon" th:src="@{/img/flight_icon_1.png}" alt="">
+                                    <div class="fi_content">
+                                        <div class="fi_title color-dark-2">landing</div>
+                                        <div class="fi_text color-grey" th:text="*{destination.name}"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <span  class="f-14 grid-hidden" th:text="*{description}"></span>
+                            <div class="rate-wrap">
+                                <div class="rate" th:text="|Review Score: *{score} / 5|"></div>
+                                <i th:text="|${#sets.size(flight.reviews)} reviews|"></i>
+                            </div>
+                        </div>
+                        <div class="title hotel-right clearfix cell-view grid-hidden">
+                            <div class="hotel-person color-dark-2">from <span class="color-blue" th:text="|$ *{price}|"></span> person</div>
+                            <a class="c-button b-40 bg-blue hv-blue-o grid-hidden" th:href="'/flights/' + *{id}">view more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </th:block>
+    </div>
+    <div class="c_pagination clearfix padd-120">
+        <a th:if="${flights.hasPrevious()}" th:href="|/flights?page=${flights.previousPageable().getPageNumber()}|"
+           class="c-button b-40 bg-blue-2 hv-blue-2-o fl">prev page</a>
+        <a th:if="${flights.hasNext()}" th:href="|/flights?page=${flights.nextPageable().getPageNumber()}|"
+           class="c-button b-40 bg-blue-2 hv-blue-2-o fr">next page</a>
+        <ul class="cp_content color-1">
+            <li th:each="page : ${#numbers.sequence(0,(flights.getTotalPages()-1))}"
+                th:classappend="${page == flights.getNumber()} ? 'active'">
+                <a th:href="|/flights?page=${page}|" th:text="${page+1}"></a></li>
+        </ul>
+    </div>
+</div>

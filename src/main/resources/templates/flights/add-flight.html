@@ -1,0 +1,60 @@
+<div class="inner-banner style-6">
+    <img class="center-image" th:src="@{/img/banners/flight_detail_banner.jpg}" alt="">
+</div>
+<div class="container">
+    <div class="col-xs-12 col-sm-7">
+        <div class="f-login-content">
+            <div class="f-login-header">
+                <div class="f-login-title color-dr-blue-2" th:text="|${action} flight|"></div>
+            </div>
+        <form method="post" th:object="${flightDto}">
+        <div class="form-group" th:classappend="${#fields.hasErrors('name')} ? 'has-error'">
+            <label class="form-control-label" for="inputName">Name</label>
+            <input type="text" class="form-control" id="inputName" th:field="*{name}"/>
+            <small class="small text-danger" th:each="error : ${#fields.errors('name')}" th:text="|  ${error}|"></small>
+        </div>
+        <div class="form-group" th:classappend="${#fields.hasErrors('price')} ? 'has-error'">
+            <label class="form-control-label" for="inputPrice">Price</label>
+            <input type="number" class="form-control form-control-danger" id="inputPrice" th:field="*{price}"/>
+            <small class="small text-danger" th:each="error : ${#fields.errors('price')}" th:text="|  ${error}|"></small>
+        </div>
+        <div class="form-group" th:classappend="${#fields.hasErrors('description')} ? 'has-error'">
+            <label class="form-control-label" for="inputDescription">Description</label>
+            <textarea class="form-control" id="inputDescription" th:field="*{description}"></textarea>
+            <small class="small text-danger" th:each="error : ${#fields.errors('description')}" th:text="|  ${error}|"></small>
+        </div>
+        <div class="form-group" th:classappend="${#fields.hasErrors('information')} ? 'has-error'">
+            <label class="form-control-label" for="inputInformation">Information</label>
+            <textarea class="form-control" id="inputInformation" th:field="*{information}"></textarea>
+            <small class="small text-danger" th:each="error : ${#fields.errors('information')}" th:text="|  ${error}|"></small>
+        </div>
+        <div class="form-group" th:classappend="${#fields.hasErrors('flightCategory')} ? 'has-error'">
+            <label class="form-control-label" for="inputCategory">Category</label>
+            <select class="form-control" id="inputCategory" th:field="*{flightCategory}">
+                <option th:each="flightCategory : ${categories}" th:value="${flightCategory}" th:text="${flightCategory.type}"></option>
+            </select>
+        </div>
+        <div class="form-group" th:classappend="${#fields.hasErrors('originName')} ? 'has-error'">
+            <label class="form-control-label" for="inputOrigin">Origin cityName</label>
+            <select class="form-control" id="inputOrigin" th:field="*{originName}">
+                <option th:each="cityName : ${cityNames}" th:value="${cityName}" th:text="${cityName}"></option>
+            </select>
+        </div>
+        <div class="form-group" th:classappend="${#fields.hasErrors('destinationName')} ? 'has-error'">
+            <label class="form-control-label" for="inputDestination">Destination cityName</label>
+            <select class="form-control" id="inputDestination" th:field="*{destinationName}">
+                <option th:each="cityName : ${cityNames}" th:value="${cityName}" th:text="${cityName}"></option>
+            </select>
+        </div>
+        <div class="form-group" th:classappend="${#fields.hasErrors('airlineName')} ? 'has-error'">
+            <label class="form-control-label" for="inputAirline">Destination cityName</label>
+            <select class="form-control" id="inputAirline" th:field="*{airlineName}">
+                <option th:each="airline : ${airlines}" th:value="${airline.name}" th:text="${airline.name}"></option>
+            </select>
+        </div>
+        <input type="submit" class="btn btn-success" th:value="|${action} hotel|"/>
+            <a class="btn btn-warning" th:href="@{/hotels}">Back</a>
+        </form>
+        </div>
+    </div>
+</div>

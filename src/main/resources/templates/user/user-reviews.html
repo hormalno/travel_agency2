@@ -1,0 +1,32 @@
+<div class="inner-banner style-6">
+    <img class="center-image" th:src="@{/img/banners/flight_detail_banner.jpg}" alt="">
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-3 col-md-12">
+            <div><h2 class="title">Your reviews</h2></div>
+            <div class="row">
+                <div class="col-xs-3 col-md-12">
+                    <table class="table table-info">
+                        <thead>
+                        <tr>
+                            <th>Product Name</th>
+                            <th>Content</th>
+                            <th>Score</th>
+                            <th>Date added</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="review : ${reviews}" th:object="${review}">
+                            <td th:text="*{bookingProductName}"></td>
+                            <td th:text="*{content}"></td>
+                            <td th:text="*{score}"></td>
+                            <td th:text="${#dates.format(review.releaseDate, 'dd/MM/yyyy')}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{fragments/head}"></head>
+<body>
+<header th:replace="~{fragments/header}"></header>
+<img class="center-image" th:src="@{img/bg-1.jpg}" alt="">
+<div class="container">
+    <div class="login-fullpage">
+        <div class="row">
+            <div class="login-logo"><img class="center-image" th:src="@{img/login.jpg}" alt=""/></div>
+            <div class="col-xs-12 col-sm-7">
+                <div class="f-login-content">
+                    <div class="f-login-header">
+                        <div class="f-login-title color-dr-blue-2">Welcome back!</div>
+                        <div class="f-login-desc color-grey">Please login to your account</div>
+                    </div>
+                    <div class="f-login-desc color-red" th:if="${error} != null" th:text="${error}"></div>
+                    <form class="f-login-form" method="post">
+                        <div class="input-style-1 b-50 type-2 color-5">
+                            <label class="clearfix" for="text-1">Username:</label>
+                            <input name="username" type="text" id="text-1" placeholder="Enter your username"/>
+                        </div>
+                        <div class="input-style-1 b-50 type-2 color-5">
+                            <label class="clearfix" for="text-2">Password:</label>
+                            <input name="password" type="text" id="text-2" placeholder="Enter your password"/>
+                        </div>
+                        <div class="checkbox-group">
+                            <div class="input-entry color-3">
+                                <input class="checkbox-form" id="text-3" type="checkbox" name="rememberMe"/>
+                                <label class="clearfix" for="text-3">
+                                    <span class="sp-check"><i class="fa fa-check"></i></span>
+                                    <span class="checkbox-text" >Remember me</span>
+                                </label>
+                            </div>
+                        </div>
+                        <input type="submit" class="login-btn c-button full b-60 bg-dr-blue-2 hv-dr-blue-2-o" value="LOGIN TO YOUR ACCOUNT"/>
+                    </form>
+                    <p>You don't have an account? Please<a class="btn btn-link" href="/register">register</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="full-copy">© 2017 All rights reserved. let’s travel</div>
+</div>
+<script th:replace="~{fragments/script}"></script>
+</body>
+</html>
